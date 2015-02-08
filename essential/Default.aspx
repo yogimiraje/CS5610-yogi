@@ -67,6 +67,7 @@
             <li> <a href="story/index.htm?../experiments/story.txt" target="_blank">Experiments</a></li>
             <li><a href="project/" target="_blank">Project</a> </li>
             <li><a href="blog/" target="_blank">Blog</li> 
+            <li><a href="https://github.com/yogimiraje/CS5610-yogi" target="_blank">Github</li> 
         </ul>
 
 
