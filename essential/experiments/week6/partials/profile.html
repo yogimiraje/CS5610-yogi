@@ -1,0 +1,24 @@
+﻿<h1> Hello {{currentUser.username}} </h1>
+
+
+<h2> Petitions you filed: </h2>
+ 
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="success">
+            <th>Title</th>
+            <th>Petition Text</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="p in petitionsFiled" class="info">
+
+            <td>{{p.title}}</td>
+            <td>{{p.ptext}}</td>
+
+        </tr>
+    </tbody>
+</table>
+ 

@@ -1,0 +1,22 @@
+﻿<h1> Petitions filed </h1>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Petitioner</th>
+            <th>Petition Text</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="p in petitions">
+
+            <td>{{p.title}}</td>
+            <td>{{p.petitioner}}</td>
+            <td>{{p.ptext}}</td>
+
+        </tr>
+    </tbody>
+</table>    

@@ -1,0 +1,47 @@
+﻿<div class="container">
+    <div class="row">
+        <form role="form" id="petForm" name="myForm" ng-submit="addToPetitions()">
+            <div class="col-lg-6">
+                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+
+                <div class="form-group">
+                    <label for="InputName">Enter Name</label>
+                    <div class="input-group">
+                        <input ng-model="petition.name" type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">Username is required.</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEmail">Enter Email</label>
+                    <div class="input-group">
+                        <input ng-model="petition.email" type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="PetitionTitle">Petition Title</label>
+                    <div class="input-group">
+                        <input ng-model="petition.title" type="text" id="PetitionTitle" class="form-control" name="PetitionTitle" placeholder="Name your petition" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">Username is required.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="InputMessage">Petition Text</label>
+                    <div class="input-group">
+                        <textarea ng-model="petition.ptext" name="InputMessage" id="InputMessage" class="form-control" rows="12" required></textarea>
+                        <span class="input-group-addon"> <span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
+
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+            </div>
+        </form>
+
+
+        
+    </div>
+</div>

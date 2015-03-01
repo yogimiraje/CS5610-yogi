@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+
+    <!---- template modified - local css -->
+    <link href="../../css/template.css" rel="stylesheet">
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+
+    <link href="../../css/template.css" rel="stylesheet">
+
+
+    <title> JQuery DOM visibility </title>
+   
+    <script src="04.js"></script>
+</head>
+<body >
+
+    <div class="container">
+        <h1>  DOM visibility using Jquery </h1>
+
+        <h3> Click on any of the images to make it disappear. You can click on show all button to make all images reappear. </h3>
+        <br />
+        <br />
+
+       
+
+            <div class="container">
+                <div class="col-sm-3">
+                    <img id="empire" src="../../images/empire.jpg" class="img-circle" width="150" height="200" />
+                </div>
+
+                <div class="col-sm-3">
+                    <img id="liberty" src="../../images/liberty.jpg" class="img-circle" width="150" height="200" />
+                </div>
+
+                <div class="col-sm-3">
+                    <img id="rockf" src="../../images/rockfellr.jpg" class="img-circle" width="150" height="200" />
+                </div>
+
+                <div class="col-sm-3">
+                    <img id="times" src="../../images/timesSquare.jpg" class="img-circle" width="150" height="200" />
+                </div>
+            
+                </div>
+
+            <br />
+            <br />
+
+
+            <div class="container">
+
+                <div class="col-sm-5">
+                </div>
+
+                <div class="col-sm-2">
+                <input id="showAll" value="show All" type="button" /> 
+                </div>
+
+                <div class="col-sm-5">
+                </div>
+
+
+            </div>
+
+        </div>
+    
+
+    <div class="container">
+
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+            This experiment illustartes the ways you can manipulate the DOM's visibility. This is achieved by 
+            hide() and show() methods. A click on particular image is grabbed with image's id and 
+            hide method is applied to it.  
+
+
+        </p>
+
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+        <h3>jQuery</h3>
+        <pre>
+
+            $("#empire").click(function () {
+            $("#empire").hide();
+             });
+    
+    
+            $("#showAll").click(function () {
+                $("#empire").show();
+        
+            });            
+            
+        </pre>
+
+        <hr />
+        <h2>Code source</h2>
+
+        <a href="../../fileview/Default.aspx?~/experiments/week5/04.html" target="_blank">HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week5/04.js" target="_blank">jQuery</a>
+
+        <hr />
+
+        <h2>Reference</h2>
+
+        <a href="http://w3schools.com/" target="_blank"> W3 Schools </a>
+     
+
+    </div>
+    
+
+</body>
+
+</html>
