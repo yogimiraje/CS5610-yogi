@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>01 Node js static page display</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/template.css">
+    <link rel="stylesheet" href="css/pad.css" />
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+
+
+    <script src="clientApp.js"></script>
+
+</head>
+<body ng-app="userApp">
+
+    <div class="container" ng-controller="userController">
+        <table class="table table-striped">
+            <thead>
+                <tr class="success">
+                    <th>First Name</th>
+                    <th>Last Name </th>
+                    <th>email ID</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="user in users" class="info">
+
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.emailID}}</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+</html>

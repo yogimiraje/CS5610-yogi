@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>03 Retrieving data from server using http get </title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet"  href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+  <div class="container">   
+
+      <h1> Retrieving data from server using http get </h1>
+
+      <a href="http://registerapp-yogendramiraje.rhcloud.com/rest/user" target="_blank"> Retrieve recepient data </a>
+
+      <br /> <br />
+      <a href="http://registerapp-yogendramiraje.rhcloud.com/rest/user/0" target="_blank"> Retrieve only first recepient data </a>
+     
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+           In this experiment, I added the get method to server. REST API is used to retrieve the recepient data.
+            I created some hard-coded data on server side and wrote get method. If you click on the link above you can find
+            data for all the recepients. If you need to access specific recepient data you can use index as shown in the 
+            second link above.
+            
+        </p>
+      
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>server.js </h3>
+        <pre>
+            var express = require('express');
+            var app = express();
+            app.use(express.static(__dirname + '/public'));
+
+            var usersData = [
+             {
+                 firstName: "Rose",
+                 lastName: "Samuels",
+                 emailID: "rose@gmail.com",
+                 amount: "700",
+                 need: "I need money for Education"
+             },
+            {
+                firstName: "Sam",
+                lastName: "Pitt",
+                emailID: "sampitt@gmail.com",
+                amount: "1200",
+                need: "I am a single father and my son is suffering from Cancer. Help needed for kid's treatment."
+            }
+        ];
+
+
+            
+        app.get("/rest/user", function (req, res) {
+            res.json(usersData);
+        })
+
+        app.get("/rest/user/:index", function (req, res) {
+            res.json(usersData[req.params.index]);
+        })
+ 
+            var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+            var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+            app.listen(port, ip);
+        </pre>
+
+        <hr />
+
+        <h2>Code source</h2>
+        
+      <a href="../../fileview/Default.aspx?~/experiments/week7/src/server.js" target="_blank">node.js : server.js</a>
+        <hr />
+
+        <h2>Reference</h2>
+      <a href="https://www.youtube.com/watch?v=wnRtA7a0ST0" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>

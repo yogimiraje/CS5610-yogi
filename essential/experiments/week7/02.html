@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>02 Node js : Hosting angular js application </title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet"  href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+  <div class="container">   
+
+      <h1> Simple Angular js application on the server using Node.js and express </h1>
+
+      <a href="http://registerapp-yogendramiraje.rhcloud.com/01angularPage.html" target="_blank"> Experiment hosted on openshift </a>
+     
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+           In this experiment, I am hosting angular js application openshift. I created angular js application as usual and tested 
+            it locally. Once it ran fine locally, I  commited the changes to git and pushed it to the remote server.
+            
+        </p>
+      
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>server.js </h3>
+      <pre>
+            var express = require('express');
+            var app = express();
+            app.use(express.static(__dirname + '/public'));
+            var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+            var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+            app.listen(port, ip);
+        </pre>
+
+        <hr />
+
+        <h2>Code source</h2>
+      <a href="../../fileview/Default.aspx?~/experiments/week7/src/01angularPage.html" target="_blank">HTML Source</a>
+        <br /><br />
+
+      <a href="../../fileview/Default.aspx?~/experiments/week7/src/clientApp.js" target="_blank">client app js </a>
+      <br /><br />
+        
+      <a href="../../fileview/Default.aspx?~/experiments/week7/src/server.js" target="_blank">node.js : server.js</a>
+        <hr />
+
+        <h2>Reference</h2>
+      <a href="https://www.youtube.com/watch?v=wnRtA7a0ST0" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Node js</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet"  href="css/template.css">
+    <link rel="stylesheet" href="css/pad.css" />
+
+    <script src="lib/jquery.min.js"></script>
+ 
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+
+
+    <script src="config.js"></script>
+    <script src="RegisterController.js"></script>
+    <script src="ViewController.js"></script>
+   
+    <script src="UserService.js"></script>
+   
+
+</head>
+
+<body ng-app="RoutingApp">
+
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"> Registeration App </a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/home">Home</a></li>
+                    <li><a href="#/register">Register</a></li>
+                    <li><a href="#/view"> Recepients  </a></li>
+                    <li><a href="#/contact"> Contact</a></li>
+                </ul>
+
+            </div><!-- /.nav-collapse -->
+        </div>
+    </nav>
+
+        <div class="container" ng-view>
+
+        </div>
+
+
+  
+</body>
+</html>

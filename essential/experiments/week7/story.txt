@@ -1,0 +1,5 @@
+﻿../../story/whatisnext.htm?../experiments/week7/story.txt                     What is next? 
+01.html																		 Static page display from Node.js 
+02.html																		 Simple Angular js application on the server using Node.js and express
+03.html																		 Retrieving data from server using http get
+04.html																		 Registration application 
