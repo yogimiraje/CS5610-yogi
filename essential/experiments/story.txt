@@ -4,4 +4,5 @@
 ../story/index.htm?../experiments/week3/story.txt                         Week 3: Moving along with jQuery !
 ../story/index.htm?../experiments/week4/story.txt                         Week 4: Entering the world of web APIs and Angular JS !
 ../story/index.htm?../experiments/week5/story.txt                         Week 5: Angular JS Routing basics and jQuery revisited !
-../story/index.htm?../experiments/week6/story.txt                         Week 6: Expolring Angular JS Routing !
+../story/index.htm?../experiments/week6/story.txt                         Week 6: Shaping up with Angular JS Routing !
+../story/index.htm?../experiments/week7/story.txt                         Week 7: Server side trip - Node and Express js !
