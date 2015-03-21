@@ -6,3 +6,4 @@
 ../story/index.htm?../experiments/week5/story.txt                         Week 5: Angular JS Routing basics and jQuery revisited !
 ../story/index.htm?../experiments/week6/story.txt                         Week 6: Shaping up with Angular JS Routing !
 ../story/index.htm?../experiments/week7/story.txt                         Week 7: Server side trip - Node and Express js !
+../story/index.htm?../experiments/week8/story.txt                         Week 9: Passport your application !

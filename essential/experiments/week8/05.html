@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>05 Login Validations   </title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>  Login Validations   </h1>
+
+        <a href="http://upliftexp-yogendramiraje.rhcloud.com/#/" target="_blank"> Experiment hosted on openshift </a>
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+            In this experiment, I am adding a few login validations: <br />
+            1. User Id and password does not match - In this case, alert is thrown to warn user <br />
+            2. In Registration password and retyped password do not match - An error message is shown on the screen <br />
+            3. User Id already exists - A request to server is made to check if the username is already present. If so,
+               an error message is thrown , otherwise successful registration is done and appropriate message 
+               is shown to user. 
+
+
+        </p>
+
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>server side js </h3>
+        <pre>
+            app.post('/exists', function (req, res) {
+                var user = req.body;
+                console.log("in user exist chk");
+    
+                console.log(user);
+                res.send((userExists(user)) ? 'true' : 'false');
+  
+            });
+
+                        function userExists(user) {
+                for (var u in usersData) {
+                    if (user.userName == usersData[u].userName) {
+                        return true;
+                    }
+                }
+                return false;
+}
+        </pre>
+
+        <hr />
+
+        <h3> client side js </h3>
+        <pre>
+            if (newUser.password == newUser.password2) {
+            $http.post('/exists', newUser)
+            .success(function (response) {
+                if (response == 'false'){
+                    $http.post("/register", newUser)
+                    .success(function (response) {
+                        console.log("registered Successfully !");
+                        console.log(response);
+                        $scope.sucessfulMessage = true;     
+                        $scope.passwordNotMatchMessage = false;
+                        $scope.userExistsMessage = false;
+                        $scope.newuser = null;
+                    });
+                   }
+                else{
+                    $scope.userExistsMessage = true;
+                    $scope.newuser.userName = null;
+                    $scope.newuser.password = null;
+                    $scope.newuser.password2 = null;
+                }
+                });
+             
+              }
+         
+            else {
+                console.log("password not match !");
+                $scope.passwordNotMatchMessage = true;
+                $scope.userExistsMessage = false;
+                $scope.newuser.password = null;
+                $scope.newuser.password2 = null;
+        
+            }
+            }
+        </pre>
+
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week8/src/home/home.html" target="_blank">Home HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week8/src/register/register.html" target="_blank">Register HTML Source</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week8/src/home/loginController.js" target="_blank">login controller source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week8/src/register/registerController.js" target="_blank">register controller source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week8/src/app.js" target="_blank">client app source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week8/src/server.js" target="_blank">server.js source code</a>
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://www.youtube.com/watch?v=8GL5WpQ0vfo" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>

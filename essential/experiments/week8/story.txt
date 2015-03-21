@@ -1,0 +1,6 @@
+﻿../../story/whatisnext.htm?../experiments/week8/story.txt                     What is next? 
+01.html																		 Login functionality using passport-js 
+02.html																		 Logout functionality using passport-js
+03.html																		 Session Management using cookies 
+04.html																		 Registration of a new user
+05.html																	     Login Validations 

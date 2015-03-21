@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>01 Login functionality using passport-js   </title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet"  href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+  <div class="container">
+
+      <h1> Login functionality using passport-js  </h1>
+
+      <a href="http://upliftexp-yogendramiraje.rhcloud.com/#/" target="_blank"> Experiment hosted on openshift </a>
+     
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+           In this experiment, I am creating angular setup for the pages. I am adding login functionality using
+            passportjs-auth module. Username and password is validated against the data on server. 
+            You may try login using username: rose and password: rose. You may see the login nav disappears once you give 
+            correct login name and password.
+
+        </p>
+      
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>server side js </h3>
+        <pre>
+           app.post('/login', passport.authenticate('local'), function(req, res)
+            {
+                console.log("sending you the user data");
+                var user = req.user;
+                console.log(user);
+                res.json(user);
+                 
+            });
+        </pre>
+
+        <hr />
+
+      <h3> client side js </h3>
+      <pre>
+        $http.get('/loggedin').success(function(user)
+        {
+        $rootScope.errorMessage = null;
+        // User is Authenticated
+        if (user !== '0')
+            deferred.resolve();
+        // User is Not Authenticated
+        else
+        {
+            $rootScope.errorMessage = 'You need to log in.';
+            deferred.reject();
+            $location.url('/');
+           
+        }
+        </pre>
+
+        <h2>Code source</h2>
+      <a href="../../fileview/Default.aspx?~/experiments/week8/src/home/home.html" target="_blank">Home HTML Source</a>
+        <br /><br />
+      <a href="../../fileview/Default.aspx?~/experiments/week8/src/register/register.html" target="_blank">Register HTML Source</a>
+      <br /><br />
+
+      <a href="../../fileview/Default.aspx?~/experiments/week8/src/home/loginController.js" target="_blank">login controller source code </a>
+      <br /><br />
+
+      <a href="../../fileview/Default.aspx?~/experiments/week8/src/register/registerController.js" target="_blank">register controller source code </a>
+      <br /><br />
+
+      <a href="../../fileview/Default.aspx?~/experiments/week8/src/app.js" target="_blank">client app source code </a>
+      <br /><br />
+
+      <a href="../../fileview/Default.aspx?~/experiments/week8/src/server.js" target="_blank">server.js source code</a>
+        <hr />
+
+        <h2>Reference</h2>
+      <a href="https://www.youtube.com/watch?v=8GL5WpQ0vfo" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>
