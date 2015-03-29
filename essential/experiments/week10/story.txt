@@ -1,0 +1,6 @@
+﻿../../story/whatisnext.htm?../experiments/week10/story.txt                   What is next? 
+01.html																		 Page design and navigation setup
+02.html																		 Angular js setup for registration 
+03.html																		 Sending the need Data to server 
+04.html																		 View summary
+05.html																	     View Details 

@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>03  Sending the need Data to server   </title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>  Sending the need Data to server  </h1>
+
+        <a href="http://webexp-yogendramiraje.rhcloud.com/#/" target="_blank"> Experiment hosted on openshift </a>
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+            In this experiment, I am sending the need data collected from user and sending it to the server.
+            This data will be maintained in data structure called needsData on the server.  
+
+        </p>
+
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3> server side js </h3>
+        <pre>
+           app.post("/register", function (req, res) {
+            var newUser = req.body;
+            var user  = {};
+            user.firstName = newUser.firstName;
+            user.lastName = newUser.lastName;
+            user.userName = newUser.userName;
+            user.password = newUser.password;
+            var need = {};
+            need.userName = newUser.userName;
+            need.amount = newUser.needAmount;
+            need.summary = newUser.needSummary;
+            need.text = newUser.needText;
+            userData.push(user);
+            needData.push(need);
+            console.log("registered!");
+            console.log(userData);
+            console.log(needData);
+            var temp ={u: user,n: need};
+            res.json(temp);
+        });
+        });
+        </pre>
+
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/home/home.html" target="_blank">Home HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/register/register.html" target="_blank">Register HTML Source</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/view/view.html" target="_blank">View HTML Source</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/view/viewController.js" target="_blank">View controller source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/register/registerController.js" target="_blank">register controller source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/app.js" target="_blank">client app source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week10/src/server.js" target="_blank">server.js source code</a>
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://www.youtube.com/watch?v=8GL5WpQ0vfo" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>

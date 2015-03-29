@@ -1,0 +1,84 @@
+﻿<nav ng-controller="LoginCtrl" class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"> UpLifter </a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/view"> View Recepients </a></li>
+                <li ng-show="currentUser"><a href="#/profile"> My Profile </a></li>
+                <li><a ng-show="currentUser" href="#/settings"> Settings </a></li>
+                <li><a  href="#/contact"> Contact us</a></li>
+
+            </ul>
+
+
+            <form class="nav navbar-nav navbar-right" ng-show="currentUser">
+
+                <div class=" form-group"></div>
+                <div class="form-group">
+                </div>
+
+                <button ng-click="logout()" type="button" class="btn btn-primary">Logout</button>
+
+            </form>
+
+
+
+            <form class="navbar-form navbar-right" id="loginForm" ng-hide="currentUser">
+
+                <div class="form-group">
+                    <input ng-model="user.username" type="text" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input ng-model="user.password" type="password" placeholder="Password" class="form-control">
+                </div>
+
+                
+                    <button ng-click="login(user)" type="button" class="btn btn-success">Sign in</button>
+               
+                <div class="form-group" id="registerationLink">
+                    <a href="#/register"> Join us ! </a>
+                </div>
+            </form>
+
+        </div><!-- /.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+
+    
+
+    <div class="container">
+        <h2>Address</h2>
+
+        <p id="contact">
+            UpLifter    <br />
+            70 Fargo St <br />
+            Boston, MA 02210 <br />
+        </p>
+       
+        <h2>Contact Number</h2>
+
+        <p id="contact">
+            +1 666 888 999 <br />
+            +1 777 777 666
+
+        </p>
+
+        <h2> Email ID </h2>
+
+        <p id="contact"> contact@uplifter.com </p>
+
+    </div>
+   
+</div>
