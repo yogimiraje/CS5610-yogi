@@ -1,0 +1,122 @@
+﻿<nav ng-controller="LoginCtrl" class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"> UpLifter </a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/view"> View Recepients </a></li>
+                <li ng-show="currentUser"><a href="#/profile"> My Profile </a></li>
+                <li><a ng-show="currentUser" href="#/settings"> Settings </a></li>
+                <li><a  href="#/contact"> Contact us</a></li>
+
+            </ul>
+
+
+            <form class="nav navbar-nav navbar-right" ng-show="currentUser">
+
+                <div class=" form-group"></div>
+                <div class="form-group">
+                </div>
+
+                <button ng-click="logout()" type="button" class="btn btn-primary">Logout</button>
+
+            </form>
+
+
+
+            <form class="navbar-form navbar-right" id="loginForm" ng-hide="currentUser">
+
+                <div class="form-group">
+                    <input ng-model="user.username" type="text" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input ng-model="user.password" type="password" placeholder="Password" class="form-control">
+                </div>
+
+                <button ng-click="login(user)" type="button" class="btn btn-success">Sign in</button>
+            </form>
+
+        </div><!-- /.nav-collapse -->
+    </div>
+</nav>
+
+
+
+<div class="container">
+
+    <h1> Profile </h1>
+    
+    <div>
+    
+        <div class="col-lg-2">
+        </div>
+
+        <div class="col-lg-8">
+        
+        	
+        	
+        	 <div class="col-lg-4">
+                <img ng-src="{{user.imgurl}}" width="200" height="200" class = "img-thumbnail img-rounded ">
+				 	
+             </div>
+        	
+        	
+        	
+        	<div class="col-lg-8">
+	        	<h2> {{user.first}}  {{user.last}} </h4>
+	            <h4 ng-show ="receiver"> Amount needed: $ {{amount}}</h3>
+	            <h4 ng-show ="receiver"> Amount received: $ {{receivedAmount}}</h3>
+	            
+	            
+	                   	
+	        	<h3> Donation Received </h1>
+	        	
+	        	<table class="table table-striped table-hover">
+	       			 <thead>
+		            	<tr class="success">
+		                <th>Donor</th>
+		                <th>Date </th>
+		                <th>Amount</th>
+		                <th>Message </th>
+		                
+	             	</tr>
+	        		</thead>
+	
+	
+	        		<tbody>
+	            	<tr ng-repeat="donation in user.donationReceived" class="info" >
+	
+		                <td>{{donation.donorName}}</td>
+		                <td>{{donation.receivedOn | date: 'shortDate'}} </td>
+		                <td>{{donation.amount}}</td>
+		                <td>{{donation.message}}</td>
+	                
+	
+	            	</tr>
+	        		</tbody>
+	   			</table> 
+	        	
+        	
+ 
+      		 </div>     
+		
+         </div>
+         	
+        <div class="col-lg-2">
+       	
+           <span class="text blueText" ng-click="editProfile()">Edit profile</span>
+           
+       	</div> 
+         	
+        </div>
+   
+</div>

@@ -3,3 +3,4 @@
 02.html																		 Simple Angular js application on the server using Node.js and express
 03.html																		 Retrieving data from server using http get
 04.html																		 Registration application 
+05.html                                                                      Hosting application on openshift

@@ -1,4 +1,6 @@
 ﻿../../story/whatisnext.htm?../experiments/week5/story.txt                     What is next? 
-03.html																		Angular JS Routing
+01.html                                                                     Angular JS routing setup
+02.html                                                                     Angular JS - Navigating through pages
+03.html																		Angular JS Routing - Service 
 04.html																		DOM visibility using jQuery
 05.html																		DOM class manipulation using jQuery

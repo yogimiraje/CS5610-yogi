@@ -1,0 +1,6 @@
+﻿../../story/whatisnext.htm?../experiments/week11/story.txt                   What is next? 
+01.html																		 Schema design 
+02.html																		 Adding regitration info to MongoDB 
+03.html																		 Fetching all recipient info 
+04.html																		 Fetching recipient details
+05.html																	     login persistance

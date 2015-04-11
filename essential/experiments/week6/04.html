@@ -1,27 +1,26 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>01 Angular JS Routing Basics</title>
+    <title>05 Angular JS Routing Basics</title>
 
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
-    <link rel="stylesheet"  href="../../css/template.css">
+    <link rel="stylesheet" href="../../css/template.css">
     <link rel="stylesheet" href="pad.css" />
 
     <script src="../../js/jquery.min.js"></script>
- 
+
     <script src="../../js/angular.min.js"></script>
     <script src="../../js/angular-route.js"></script>
 
 
-    <script src="04.js"></script>
-    <script src="04Service.js"></script>
+    <script src="05.js"></script>
+    <script src="05Service.js"></script>
 
 </head>
 
 <body ng-app="RoutingApp">
 
-   
     <nav ng-controller="NavController" class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -39,10 +38,10 @@
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/file"> File a petition </a></li>
                     <li><a href="#/view">  View All Petitions </a></li>
-                    <li ng-show="currentUser" ><a href="#/profile/{{currentUser.username}}">My Petitions</a></li>
-                    
-                     <li><a href="#/contact"> Contact</a></li>
-                   
+                    <li ng-show="currentUser"><a href="#/profile/{{currentUser.username}}">My Petitions</a></li>
+
+                    <li><a href="#/contact"> Contact</a></li>
+
 
                 </ul>
 
@@ -65,9 +64,96 @@
     </nav>
 
 
-        <div class="container" ng-view>
 
-        </div>
+    <div class="container" ng-view>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        
+            As part of <b>fourth experiment </b>, I have added profile-based view of petitions.  I updated the user's petitition, so that user can see his own petitions.
+            This is done by adding the petitionsFiled array to the user data.
+        </p>
+       
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>ng-routing: controllers</h3>
+        <pre>
+          
+        app.controller("ProfileController", function ($scope, UserService, $routeParams,PetitionService) {
+            var username = $routeParams.username;
+            $scope.username = username;
+            $scope.currentUser = UserService.getCurrentUser();
+            console.log(username);
+            var indices = $scope.currentUser.petitionsFiled;
+            console.log(indices);
+            $scope.petitionsFiled = PetitionService.getPetitionsByIndices(indices);
+            var myPetitions = $scope.petitionsFiled;
+            console.log("Hurray");
+            console.log(myPetitions);
+        });
+        
+  </pre>
+
+        <h3>ng-routing: service</h3>
+        <pre> 
+                app.factory("UserService", function () {
+                var currentUser = null;
+                var users = [
+                    { username: "joe", password: "joe", petitionsFiled: [1, 2] },
+                    { username: "lucy", password: "lucy", petitionsFiled: [0, 3] },
+                    { username: "matt", password: "matt", petitionsFiled: [4] }
+                ]
+                var login = function (username, password) {
+                    for (var u in users) {
+                        if (users[u].username == username && users[u].password == password) {
+                            currentUser = users[u];
+                            return users[u];
+                        }
+                    }
+                    return null;
+                };
+                var getCurrentUser = function () {
+                    return currentUser;
+                }
+                var addPetitionIndex = function (index, username) {
+                    for (var u in users) {
+                        if (users[u].username == username) {
+                            users[u].petitionsFiled.push(index);
+                        }
+                    }
+                };
+                return {
+                    login: login,
+                    getCurrentUser: getCurrentUser,
+                    addPetitionIndex: addPetitionIndex
+                };
+            });
+        
+        </pre>
+
+
+        <hr />
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05.html" target="_blank">HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05.js" target="_blank">Angular JS controllers</a>
+        <br />
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05Service.js" target="_blank">Angular JS service</a>
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://angularjs.org/" target="_blank"> Angular JS </a>
+    </div>
 
 </body>
 </html>

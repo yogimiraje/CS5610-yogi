@@ -68,6 +68,91 @@
         <div class="container" ng-view>
 
         </div>
+    <div class="container">
 
+
+        <hr />
+        <h2> About this experiment</h2>
+
+       
+
+            In <b>third experiment </b>, I added   the login validation feature. so, if you try to login with invalid
+            username or password, an error alert is thrown.
+        </p>
+        
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>ng-routing: controllers</h3>
+        <pre>
+            
+         
+            $scope.currentUser = null;
+            $scope.login = function () {
+                var username = $scope.username;
+                var password = $scope.password;
+                $scope.currentUser = UserService.login(username, password);
+                if ($scope.currentUser == null) {
+                    alert("Incorrect user id or password !");
+                    $scope.username = null;
+                    $scope.password = null;
+                }
+            }
+             
+  </pre>
+
+        <h3>ng-routing: service</h3>
+        <pre> 
+                app.factory("UserService", function () {
+                var currentUser = null;
+                var users = [
+                    { username: "joe", password: "joe", petitionsFiled: [1, 2] },
+                    { username: "lucy", password: "lucy", petitionsFiled: [0, 3] },
+                    { username: "matt", password: "matt", petitionsFiled: [4] }
+                ]
+                var login = function (username, password) {
+                    for (var u in users) {
+                        if (users[u].username == username && users[u].password == password) {
+                            currentUser = users[u];
+                            return users[u];
+                        }
+                    }
+                    return null;
+                };
+                var getCurrentUser = function () {
+                    return currentUser;
+                }
+                var addPetitionIndex = function (index, username) {
+                    for (var u in users) {
+                        if (users[u].username == username) {
+                            users[u].petitionsFiled.push(index);
+                        }
+                    }
+                };
+                return {
+                    login: login,
+                    getCurrentUser: getCurrentUser,
+                    addPetitionIndex: addPetitionIndex
+                };
+            });
+        
+        </pre>
+
+
+        <hr />
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05.html" target="_blank">HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05.js" target="_blank">Angular JS controllers</a>
+        <br />
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05Service.js" target="_blank">Angular JS service</a>
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://angularjs.org/" target="_blank"> Angular JS </a>
+    </div>
 </body>
 </html>

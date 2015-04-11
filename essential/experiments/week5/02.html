@@ -1,52 +1,164 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>01 Angular JS Routing Basics</title>
+    <title>Angular JS Routing</title>
 
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
-    <link rel="stylesheet"  href="../../css/template.css">
+    <link rel="stylesheet" href="../../css/template.css">
     <link rel="stylesheet" href="pad.css" />
 
     <script src="../../js/jquery.min.js"></script>
- 
+
     <script src="../../js/angular.min.js"></script>
     <script src="../../js/angular-route.js"></script>
 
 
-    <script src="02.js"></script>
+    <script src="03.js"></script>
     <script src="03Service.js"></script>
 
 </head>
 
 <body ng-app="RoutingApp">
 
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand">File the Petition </a>
-        </div>
+    <div class="container">
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">File the Petition </a>
+            </div>
 
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#/home">Home</a></li>
-                <li><a href="#/file"> File a petition </a></li>
-                <li><a href="#/view">  View All Petitions </a></li>
-                <li><a href="#/contact"> Contact</a></li>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/home">Home</a></li>
+                    <li><a href="#/file"> File a petition </a></li>
+                    <li><a href="#/view">  View All Petitions </a></li>
+                    <li><a href="#/contact"> Contact</a></li>
 
-            </ul>
-        </div><!-- /.nav-collapse -->
+                </ul>
+            </div><!-- /.nav-collapse -->
 
-     </nav>
+        </nav>
 
         <div class="container" ng-view>
 
         </div>
+
+        <div class="container">
+
+
+            <hr />
+            <h2> About this experiment</h2>
+
+            <p>
+
+                In second experiment, I created diffrent pages and set up the navigation through those pages.
+                This is achieved using creating different 'tabs' (partial pages). You may put different contents for
+                diffrent pages based on the page is made for.
+
+
+            </p>
+
+
+            <hr />
+
+            <h2>Code snippet</h2>
+
+            <h3>ng-routing: configuration</h3>
+            <pre>
+              app.config(['$routeProvider',
+                  function ($routeProvider) {
+                      $routeProvider.
+                        when('/home', {
+                            templateUrl: 'partials/home.html'
+    
+                        }).
+        
+                         when('/file', {
+                             templateUrl: 'partials/file.html',
+                             controller: 'FileController'
+                         }).
+                        when('/view', {
+                            templateUrl: 'partials/view.html',
+                            controller: 'ViewController'
+                        }).
+                         when('/contact', {
+                             templateUrl: 'partials/contact.html',
+                         }).
+                        otherwise({
+                            redirectTo: '/home'
+                        });
+                  }]);              
+            
+                </pre>
+
+            <h3>ng-routing: controllers</h3>
+            <pre>
+             
+                app.controller("FileController", function ($scope,PetitionService) {
+        
+                console.log("starting ");
+                $scope.addToPetitions = function () {
+        
+                    var newPetition = {
+                        title: $scope.petition.title,
+                        petitioner: $scope.petition.name,
+                        email: $scope.petition.email,
+                        ptext: $scope.petition.ptext
+                    };
+                    console.log("In file controller ");
+    
+                    console.log(newPetition);
+                    PetitionService.addToPetitions(newPetition);
+                    $('#petForm')[0].reset();
+                };
+            });
+            </pre>
+
+            <h3>ng-routing: service</h3>
+            <pre>
+                  app.factory('PetitionService', function PetitionService($http) {
+                var myPetitions = [];
+                console.log("In service");
+                var addToPetitions = function (petition) {
+                    myPetitions.push(petition);
+        
+                    console.log("Added - display from service");
+                    console.log(petition);
+                }
+   
+                var getPetitions = function () {
+                    console.log("returning petition");
+                    return myPetitions;
+                }
+                return {
+                    addToPetitions: addToPetitions,
+                    getPetitions: getPetitions
+                }
+                                                                                                        
+            });
+             </pre>
+
+
+            <hr />
+            <h2>Code source</h2>
+            <a href="../../fileview/Default.aspx?~/experiments/week5/03.html" target="_blank">HTML Source</a>
+            <br /><br />
+            <a href="../../fileview/Default.aspx?~/experiments/week5/03.js" target="_blank">Angular JS</a>
+            <hr />
+
+            <h2>Reference</h2>
+            <a href="https://angularjs.org/" target="_blank"> Angular JS </a>
+        </div>
+
+
+
+    </div>
 
 </body>
 </html>

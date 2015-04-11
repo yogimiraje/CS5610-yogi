@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>01 Adding user information to databse  </title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1> Adding user information to databse    </h1>
+
+        <a href="http://uplifter-mirajey.rhcloud.com/" target="_blank"> Experiment hosted on openshift </a>
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+            In this experiment, I added the user information to the database. Client-side controller calls 
+            rest api - /rest/register. Server checks if the user already exists in the database using 
+            User.findOne({username: newUser.username}). If it exists then call is returned to client and 
+            appropriate error message is thrown. If the user is new then user information is saved in database
+            using newUser.save. 
+
+        </p>
+
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+
+
+
+        <pre> 
+            User.findOne({username: newUser.username}, function(err, user)
+		    {
+		    	
+		        if(err) 
+		        { console.log(err); 
+		          return next(err); 
+		        }
+		        
+		        if(user)
+		        {
+		        	console.log('this user already exists:')
+		        	//console.log(user.username);
+		        	res.json(null);
+		            return;
+		        }
+		        
+		        var newUser = new User(req.body);
+		        
+		        newUser.save(function(err, newUser)
+			        {
+		        		var user = {};
+		        		user.username = newUser.username;
+		        		user.password = newUser.password;
+			            req.login(user, function(err)
+			            {
+			                if(err) { return next(err); }
+			                res.json(newUser);
+			            });
+			        });
+		       
+		      
+		    });
+  
+        </pre>
+
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/home/home.html" target="_blank">Home HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/register/register.html" target="_blank">Register HTML Source</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/view/view.html" target="_blank">View HTML Source</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/view/viewController.js" target="_blank">View controller source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/register/registerController.js" target="_blank">register controller source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/app.js" target="_blank">client app source code </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week11/src/server.js" target="_blank">server.js source code</a>
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://www.youtube.com/watch?v=8GL5WpQ0vfo" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>

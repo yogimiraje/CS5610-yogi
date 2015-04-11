@@ -1,3 +1,7 @@
 ﻿../../story/whatisnext.htm?../experiments/week6/story.txt                     What is next? 
-05.html																		 Angular JS Routing - Controllers, Services
+01.html																		 User login
+02.html																		 User logout
+03.html																		 login validation 
+04.html																		 profile-based view of petitions.
+05.html																		 petition file after login
  

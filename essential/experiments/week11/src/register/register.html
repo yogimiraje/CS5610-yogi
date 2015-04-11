@@ -1,0 +1,218 @@
+﻿<nav ng-controller="LoginCtrl" class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"> UpLifter </a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/view"> View Recepients </a></li>
+                <li ng-show="currentUser"><a href="#/profile"> My Profile </a></li>
+                <li><a ng-show="currentUser" href="#/settings"> Settings </a></li>
+                <li><a href="#/contact"> Contact us</a></li>
+
+            </ul>
+
+
+            <form class="nav navbar-nav navbar-right" ng-show="currentUser">
+
+                <div class=" form-group"></div>
+                <div class="form-group">
+                </div>
+
+                <button ng-click="logout()" type="button" class="btn btn-primary">Logout</button>
+
+            </form>
+
+
+
+            <form class="navbar-form navbar-right" id="loginForm" ng-hide="currentUser">
+
+                <div class="form-group">
+                    <input ng-model="user.username" type="text" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input ng-model="user.password" type="password" placeholder="Password" class="form-control">
+                </div>
+
+                <button ng-click="login(user)" type="button" class="btn btn-success">Sign in</button>
+
+                <div class="form-group" id="registerationLink">
+                    <a href="#/register"> Join us ! </a>
+                </div>
+            </form>
+
+        </div><!-- /.nav-collapse -->
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+	
+	  <div class="col-lg-3">
+	  </div>
+	  
+	<div class="col-lg-6">
+        <form role="form" id="regForm" name="myForm" novalidate ng-submit="register(newuser)">
+           
+                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+
+ 
+                <div class="form-group">
+                    <label for="first">First Name</label>
+                    <div class="input-group">
+                        <input ng-model="newuser.first" type="text" class="form-control" name="first" id="first" placeholder="First Name" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">First name is required.</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="last">Last Name</label>
+                    <div class="input-group">
+                        <input ng-model="newuser.last" type="text" class="form-control" name="last" id="last" placeholder="Last Name" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">Last name is required.</span>
+
+                    </div>
+                </div>
+
+
+            <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <input ng-model="newuser.username" type="text" class="form-control" name="userName" id="userName" placeholder="Username" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">User name is required.</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">Password </label>
+                    <div class="input-group">
+                        <input ng-model="newuser.password" type="password" class="form-control" name="pwd" id="pwd" placeholder="Password" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">Password is required.</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd2">Confirm Password </label>
+                    <div class="input-group">
+                        <input ng-model="newuser.password2" type="password" class="form-control" name="pwd2" id="pwd2" placeholder="Password" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">Password is required.</span>
+
+                    </div>
+                </div>
+
+ 				 
+
+			<div class="form-group">
+               <label for="newuserEmail">Enter Email ID</label>
+               <div class="input-group">
+                   <input ng-model="newuser.email" type="email" class="form-control" id="newuserEmail" name="newuserEmail" placeholder="somebody@something.com" required>
+                   <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                   <span ng-show="myForm.user.$error.required">email ID is required.</span>
+               </div>
+        	   </div>
+				
+				 <div class="form-group">
+                    <label for="address">Address</label>
+                    <div class="input-group">
+                        <input ng-model="newuser.address" type="text" class="form-control" name="address" id="address" placeholder="San Jose, CA" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required">Address is required.</span>
+
+                    </div>
+                </div>
+
+				 <div >
+					<label > Upload Profile picture </label>
+				 </div>
+				 
+				 <div class="col-lg-6" >
+					 	
+						 <input ng-model="photo" class="form-control" id="filePicker" type="file">
+				 </div>
+					
+				 <div class="col-lg-6" >
+               		<img ng-src="{{loc}}" width="100" height="100" class="avatar img-thumbnail pull-right" alt="avatar">
+              	 </div>
+					
+					
+				<div class="form-group">
+	               
+	              <input type="checkbox" name="recepient" ng-model="recepient"> I am in Need <br>
+	              
+                </div>
+				
+				 <div class="form-group" ng-show="recepient">
+	                    <label for="needSummary">Summary of your need </label>
+	                    <div class="input-group">
+	                        <input ng-model="newuser.need.summary" type="text" class="form-control" name="needSummary" id="needSummary" placeholder="one line desciption of your need" required>
+	                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+	                        <span ng-show="myForm.user.$error.required"> Summary is required.</span>
+	
+	                    </div>
+	                </div>
+
+                <div class="form-group" ng-show="recepient">
+                    <label for="needAmount">Amount you need </label>
+                    <div class="input-group">
+                        <input ng-model="newuser.need.amount" type="number" min="1" class="form-control" name="needAmount" id="needAmount" placeholder="Specify the amount you need in $" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required"> Amount is required.</span>
+
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="recepient">
+                    <label for="needText"> Brief description of your need </label>
+                    <div class="input-group">
+                        <textarea ng-model="newuser.need.text" type="text" class="form-control" name="needText" id="needText" rows="6" placeholder="Describe your need" required> </textarea>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        <span ng-show="myForm.user.$error.required"> Description is required.</span>
+
+                    </div>
+                </div>
+
+            
+                <div class="form-group">
+
+                    <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                </div>
+
+ 
+                <div class="form-group">
+                   <br />
+                    <br />
+                    <span ng-show="sucessfulMessage" id="succMsg"> <b>You have registered Successfully ! Login with your UserID and password.</b></span>
+
+                    <span ng-show="passwordNotMatchMessage" id="dangerMsg"> <b> Password and retyped password do not match.</b></span>
+
+                    <span ng-show="userExistsMessage" id="dangerMsg"> <b>This user name is already taken. Please enter some other user name</b></span>
+
+                    </div>
+                
+		 </form>
+	 </div>
+	 
+	 <div class="col-lg-3">
+	  </div>
+	  
+    </div>
+
+</div>
+   

@@ -1,0 +1,128 @@
+﻿<nav ng-controller="LoginCtrl" class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"> UpLifter </a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/view"> View Recepients </a></li>
+                <li ng-show="currentUser"><a href="#/profile"> My Profile </a></li>
+                <li><a ng-show="currentUser" href="#/settings"> Settings </a></li>
+                <li><a href="#/contact"> Contact us</a></li>
+
+            </ul>
+
+
+            <form class="nav navbar-nav navbar-right" ng-show="currentUser">
+
+                <div class=" form-group"></div>
+                <div class="form-group">
+                </div>
+
+                <button ng-click="logout()" type="button" class="btn btn-primary">Logout</button>
+
+            </form>
+
+
+
+            <form class="navbar-form navbar-right" id="loginForm" ng-hide="currentUser">
+
+                <div class="form-group">
+                    <input ng-model="user.username" type="text" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input ng-model="user.password" type="password" placeholder="Password" class="form-control">
+                </div>
+
+                <button ng-click="login(user)" type="button" class="btn btn-success">Sign in</button>
+
+                <div class="form-group" id="registerationLink">
+                    <a href="#/register"> Join us ! </a>
+                </div>
+            </form>
+
+        </div><!-- /.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <h1> Recipient :  </h1>
+
+    <div class="container">
+
+        <div class="col-lg-2">
+        </div>
+
+        <div class="col-lg-8">
+           <fieldset>
+            <h3> {{needDetail.summary}}</h3>
+
+            <div class="col-lg-3">
+             
+                <img ng-src="{{needDetail.imgurl}}" width="140" height="140" class="img-rounded" id="p5">
+			    
+                <h4 class="center"> {{needDetail.name}} </h4>
+            </div>	
+
+            <div class="col-lg-9">
+                 
+                 
+                    {{needDetail.text}}
+                    
+                   
+                   <h3> Needs    : $ {{needDetail.amount}} </h3>
+                   
+                   
+                   <h3> Received : $ {{receivedAmount}} </h3>
+                    
+                   
+                   	
+                   <button ng-click="donate()" type="button" class="btn btn-success pull-right" ng-hide="donateClicked" ng-submit="donate()">Donate</button>
+                 
+                 </br>
+                
+                 	
+                 <h5 ng-show="donateClicked"> Please enter the amount to be donated and a brief message to me !</h2>
+                 
+               
+                 	 </br>
+              		 <form  id="paymentForm" name="donationForm" ng-show="donateClicked" ng-submit="processDonation()">
+						
+		                <div class="form-group">
+		                   <label >Amount</label>
+		                    <input ng-model="donation.amount"  type="number" min="1" placeholder="Enter the amount without $ sign" class="form-control width100" required>
+		               		 <span ng-show="donationForm.user.$error.required">At least $1 required.</span>
+		                </div>
+		                
+		                <div class="form-group">
+		                 <label >A brief message </label>
+		                    <input ng-model="donation.message"  type="text" placeholder="God bless value !"  class="form-control  width100"" required>
+		               		 <span ng-show="donationForm.user.$error.required">Message is required.</span>
+		                </div>
+		
+		                <button  name="submit" id="submit" ng-click="processDonation()" type="button" class="btn btn-success" >Donate</button>
+		                
+		                <button  ng-click="cancel()" type="button" class="btn btn-warning" >Not now</button>
+		                
+           			 </form>
+		         
+                   
+           	    
+             
+
+            </fieldset>
+        </div>
+
+        <div class="col-lg-2">
+        </div></div>
+</div>
+
+

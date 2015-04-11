@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>05 Hosting application on openshift</title>
+
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../css/template.css">
+    <link rel="stylesheet" href="pad.css" />
+
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1> Hosting application on openshift </h1>
+
+        <a href="http://registerapp-yogendramiraje.rhcloud.com/01register.html#/home" target="_blank"> Experiment hosted on openshift </a>
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        
+        <p>
+            In the fifth experiment, I populated the data back onto the front end. For this get method in rest api is used.
+            All the data received is rendered on HTML using the tables.
+
+            Once this is tested locally I set up openshift enviornment and required softwares to test my
+            application on the remote server.
+        </p>
+
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>server.js </h3>
+
+        <pre>
+         var express = require('express');
+        var app = express();
+        app.use(express.static(__dirname + '/public'));
+        var bodyParser = require('body-parser');
+        var multer = require('multer');
+        app.use(bodyParser.json()); // for parsing application/json
+        app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+        app.use(multer()); // for parsing multipart/form-data
+        var usersData = [
+         {
+             firstName: "Rose",
+             lastName: "Samuels",
+             emailID: "rose@gmail.com",
+             amount: "700",
+             need: "I need money for Education"
+         },
+        {
+            firstName: "Sam",
+            lastName: "Pitt",
+            emailID: "sampitt@gmail.com",
+            amount: "1200",
+            need: "I am a single father and my son is suffering from Cancer. Help needed for kid's treatment."
+        }
+        ];
+        app.get('/', function (req, res) {
+            res.send('hi');
+        })
+        app.get("/rest/user", function (req, res) {
+            res.json(usersData);
+        })
+        app.get("/rest/user/:index", function (req, res) {
+            res.json(usersData[req.params.index]);
+        })
+        app.post("/rest/user", function (req, res) {
+            var userObj = req.body;
+            usersData.push(userObj);
+            res.json(usersData);
+        });
+        // work-around so that server works locally and on opernshift
+        var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+        var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+        app.listen(port, ip);
+</pre>
+
+
+
+        <hr />
+
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week7/src/01register.html" target="_blank">HTML Source</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week7/src/RegisterController.js" target="_blank">Angular Register controller</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week7/src/ViewController.js" target="_blank">Angular View controller</a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week7/src/UserService.js" target="_blank">Angular service </a>
+        <br /><br />
+
+        <a href="../../fileview/Default.aspx?~/experiments/week7/src/server.js" target="_blank">node.js : server.js</a>
+        <hr />
+
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://www.youtube.com/watch?v=wnRtA7a0ST0" target="_blank"> Prof. Jose's lecture </a>
+    </div>
+
+</body>
+</html>

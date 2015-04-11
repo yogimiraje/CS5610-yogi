@@ -64,9 +64,81 @@
     </nav>
 
 
-        <div class="container" ng-view>
+    <div class="container" ng-view>
 
-        </div>
+    </div>
+
+    <div class="container">
+
+
+        <hr />
+        <h2> About this experiment</h2>
+
+        <p>
+            In these experiments, I have extended the functionality of experiment I performed last week.
+            Main goal was to give profile-based access to user. The user still can file the petition without signing in.
+            However, after signing in you can see the petitions you have filed. Let us see how this is achieved in
+            a series of experiments.
+
+        </p>
+        <p>
+            In <b> first experiment</b>, I created different sample profiles. You may try login using : <br />
+            <b>username: joe, lucy,matt with passwords same as that of username. </b>
+            After login, you will see some additional links and also a logout button.
+        </p>
+      
+
+        <hr />
+
+        <h2>Code snippet</h2>
+
+
+        <h3>ng-routing: cinfiguration </h3>
+        <pre>
+                     
+app.config(['$routeProvider',
+  function ($routeProvider) {
+      $routeProvider.
+        when('/home', {
+            templateUrl: 'partials/home.html'
+            //        ,controller: 'PhoneListCtrl'
+        }).
+         when('/file', {
+             templateUrl: 'partials/file.html',
+             controller: 'FileController'
+         }).
+        when('/profile/:username', {
+            templateUrl: 'partials/profile.html',
+            controller: 'ProfileController'
+        }).
+        when('/view', {
+            templateUrl: 'partials/view.html',
+            controller: 'ViewController'
+        }).
+         when('/contact', {
+             templateUrl: 'partials/contact.html',
+         }).
+        otherwise({
+            redirectTo: '/home'
+        });
+  }]);
+  </pre>
+
+      
+
+        <hr />
+        <h2>Code source</h2>
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05.html" target="_blank">HTML Source</a>
+        <br /><br />
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05.js" target="_blank">Angular JS controllers</a>
+        <br />
+        <a href="../../fileview/Default.aspx?~/experiments/week6/05Service.js" target="_blank">Angular JS service</a>
+        <hr />
+
+        <h2>Reference</h2>
+        <a href="https://angularjs.org/" target="_blank"> Angular JS </a>
+    </div>
+
 
 </body>
 </html>
